@@ -158,8 +158,8 @@
     0% {content: '';}
     11% {content: 'I';}
     44% {content: 'I am';}
-    88% {content: 'I am dot';}
-    100% {content: 'I am dot.';}
+    88% {content: 'I am Dot';}
+    100% {content: 'I am Dot.';}
 }
 
 @keyframes dotintro8 {

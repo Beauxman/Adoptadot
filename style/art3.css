@@ -108,3 +108,97 @@
 .optionsText::before {
 	content: "Yay! Come celebrate with us!";
 }
+
+.chatbox {
+	position: absolute;
+	z-index: 4;
+	width: 40vw;
+	height: 20vh;
+	background-color: #000000;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 4px;
+	border-radius: 2%;
+	margin-left: 30vw;
+	margin-top: 75vh;
+	color: #ffffff;
+	padding-left: 10vw;
+	padding-top: 3vh;
+	padding-bottom: 1vh;
+	padding-right: 2vw;
+	font-size: 2vw;
+	animation: chatboxanim1 1s;
+}
+
+@keyframes chatboxanim1 {
+	0% {height: 1vh; margin-top: 94vh; width: 1px; margin-left: 50vw; padding: 0px;}
+	50% {height: 1vh; margin-top: 94vh; width: 40vw; margin-left: 30vw;}
+	100% {height 20vh; margin-top: 75vh;}
+}
+
+@keyframes chatboxanim2 {
+	0% {height 20vh; margin-ttop: 75vh;}
+	50% {height: 1vh; margin-top: 94vh; width: 40vw; margin-left: 30vw;}
+	100% {height: 1vh; margin-top: 94vh; width: 1px; margin-left: 50vw; padding: 0px;}
+}
+
+.chatdot1, .chatdot2, .chatdot3, .chatdot4, .chatSquare1, .chatSquare2 {
+	position: absolute;
+	z-index: 5;
+	width: 6vw;
+	height: 6vw;
+	margin-left: 32vw;
+	margin-top: 78.5vh;
+	border-radius: 50%;
+}
+
+.chatdot1 {
+	background-color: #ffffff;
+}
+
+.chatdot2 {
+	background-image: linear-gradient(330deg, #006bb3, #1affff);
+}
+
+.chatdot3 {
+	background-image: linear-gradient(30deg, #00cc7a, #00ffcc);
+}
+
+.chatdot4 {
+	background-image: linear-gradient(70deg, #e60073, #cc33ff);
+}
+
+.chatSquare1 {
+	background-color: #0d0d0d;
+	box-shadow: 0px 1vh 50px #111111;
+	border-radius: 5%;
+}
+
+.chatSquare2 {
+	background-color: #ff0000;
+	border-radius: 5%;
+}
+
+@keyframes chatdotanim1 {
+	from {margin-top: 78.5vh;}
+	to {margin-top: 77vh;}
+}
+
+@keyframes chatdotanim2 {
+	from {width: 6vw; height: 6vw;}
+	to {width: 5.5vw; height: 5.5vw; margin-left: 32.25vw; margin-top: 78.75vh;}
+}
+
+@keyframes screenanim1 {
+	from {background-color: #000000;}
+	to {background-color: #ff0000;}
+}
+
+@keyframes screenanim2 {
+	0% {background-color: #000000;}
+	25% {background-color: #ff0000;}
+	50% {background-color: #000000;}
+	75% {background-color: #ff0000;}
+	100% {background-color: #000000;}
+}
+
