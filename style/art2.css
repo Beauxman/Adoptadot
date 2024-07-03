@@ -47,9 +47,6 @@
 
 @keyframes lampanim2 {
   0% {border-bottom-color: #ffffff;}
-  13% {border-bottom-color: #cccccc;}
-  25% {border-bottom-color: #ffffff;}
-  50% {border-bottom-color: #cccccc;}
   75% {border-bottom-color: #ffffff;}
   100% {border-bottom-color: #000000;}
 }

@@ -1,8 +1,6 @@
 .screen {
 	display: flex;
 	height: 100vh;
-	animation: 	screenintro1 1s 8.2s forwards,
-				screenintro2 1s 25s forwards
 }
 
 .dot {
