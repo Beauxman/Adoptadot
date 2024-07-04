@@ -289,3 +289,8 @@
 	50% {background-color: #ff0000;}
 	100% {background-color: #000000;}
 }
+
+@keyframes dotenc2anim1 {
+	from {background-color: #ffffff;}
+	to {background-color: #000000;}
+}

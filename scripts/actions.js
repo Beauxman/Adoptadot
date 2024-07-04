@@ -91,6 +91,62 @@ function spawnEnemies() {
 	return enemies;
 }
 
+function creditsScene() {
+	screen.style = "animation: screencredits1 1s 1s normal forwards;";
+	setTimeout(() => {
+		var chatbox = createDiv("textcredits1");
+	}, 2000)
+}
+
+function outroScene() {
+	var dot = createDiv("dotoutro");
+	var dot2, dot3, dot4;
+	var outrotext1 = createDiv("textoutro1");
+
+	setTimeout(() => {
+		var dot2 = createDiv("dotoutro2");
+		var dot3 = createDiv("dotoutro3");
+		var dot4 = createDiv("dotoutro4");
+		setTimeout(() => {
+			createChatbox(screen, "chatdot3", "Spot", "Dot, you did it!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+			setTimeout(() => {
+				createChatbox(screen, "chatdot4", "Sprinkle", "You saved us!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+				setTimeout(() => {
+					createChatbox(screen, "chatdot2", "Blob", "We owe you one, bud.", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+					setTimeout(() => {
+						createChatbox(screen, "chatdot3", "Spot", "It's celebration time!", 3500, 80, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+						setTimeout(() => {
+							dot2.style = "animation: dotsoutro2anim2 0.5s infinite alternate;"
+							dot3.style = "animation: dotsoutro2anim2 0.4s infinite alternate;"
+							dot4.style = "animation: dotsoutro2anim2 0.5s infinite alternate;"
+							setTimeout(() => {
+								screen.style = "animation: screenoutro1 0.75s normal forwards;";
+								setTimeout(() => {
+									screen.removeChild(dot2);
+									screen.removeChild(dot3);
+									screen.removeChild(dot4);
+									screen.removeChild(outrotext1);
+									setTimeout(() => {
+										createChatbox(screen, "chatTriangle1", "Mischievous traingle", "Hehehehe!", 3000, 150, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+										setTimeout(() => {
+											var outrotext2 = createDiv("textoutro2");
+											setTimeout(() => {
+												screen.removeChild(outrotext2)
+												screen.removeChild(dot);
+												creditsScene();
+											}, 7000)
+										}, 5000)
+									}, 1000)
+								}, 250)
+							}, 5000)
+						}, 5000);
+					}, 5000);
+				}, 5000);
+			}, 5000);
+		}, 1000);
+	}, 2000);
+}
+
 function fightScene(enemies) {
 	var dot = createDiv("dotenc2");
 	var clickFunc;
@@ -138,7 +194,7 @@ function fightScene(enemies) {
 								}
 
 								setTimeout(() => {		
-									createChatbox(screen, "chatSquare2", "Evil square", "I'll just do it myself...", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
+									createChatbox(screen, "chatSquare2", "Evil square", "I'll just do it myself then...", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 									setTimeout(() => {
 										bossfight = true;
 										enemies = [createDiv("squareencboss")];
@@ -156,11 +212,12 @@ function fightScene(enemies) {
 							healthbarboss.style = "width: " + (.9 * bosshealth) + "vw;"
 							
 							if (bosshealth == 66) {
-								createChatbox(screen, "chatSquare2", "Evil square", "You will pay for that.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
+								createChatbox(screen, "chatSquare2", "Evil square", "You will pay for that!", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 							} else if (bosshealth == 32) {
 								createChatbox(screen, "chatSquare2", "Evil square", "Ow! That hurt.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 							}
-						} else {
+						} else if (bosshealth <= 0 && bosshealth >= -99) {
+							bosshealth = -100
 							if (document.getElementsByClassName("healthbarboss").length > 0) {
 								screen.removeChild(healthbarboss);
 							}
@@ -172,12 +229,21 @@ function fightScene(enemies) {
 									var remainingBullets = document.getElementsByClassName("enemyBullet");
 									for (let i = 0; i < remainingBullets.length; i++) { 
 										screen.removeChild(remainingBullets[i]);
-									}
-									
-									clearInterval(gameLoop);
-									////////////////////////
+									}				
 									setTimeout(() => {
+										clearInterval(gameLoop);
 										screen.removeEventListener("mousemove", movFunc);
+										dot.style = "animation: dotenc2anim1 2s normal forwards;";
+										setTimeout(() => {
+											screen.removeChild(dot);
+											
+											var child = screen.lastElementChild;
+											while (child) {
+												screen.removeChild(child);
+												child = screen.lastElementChild;
+											}
+											outroScene();
+										}, 2000);
 									}, 2000);
 								}, 500);
 							}, 2000);
@@ -202,7 +268,7 @@ function fightScene(enemies) {
 			var pos = enemyBullets[i].getBoundingClientRect();
 			var enPos = dot.getBoundingClientRect();
 			enemyBullets[i].style.marginTop = (pos.top + bulletSpeed) + "px";
-			if (pos.bottom >= (screen.offsetHeight - (screen.offsetHeight / 50))) {
+			if (pos.bottom >= (screen.offsetHeight - (screen.offsetHeight / 40))) {
 				screen.removeChild(enemyBullets[i]);
 			}
 			
@@ -262,7 +328,7 @@ function encounterScene() {
 						var textenc4 = createDiv("textenc4");
 						setTimeout(() => {
 							screen.removeChild(textenc4);
-							createChatbox(screen, "chatSquare2", "Evil square", "Correct. And I'm not alone.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+							createChatbox(screen, "chatSquare2", "Evil square", "And I'm not alone.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
 							setTimeout(() => {
 								screen.style = "animation: screenanim1 1s;";
 								screen.style = "animation: screenanim1 1s 1s reverse;";
@@ -271,7 +337,7 @@ function encounterScene() {
 									setTimeout(() => {
 										createChatbox(screen, "chatSquare2", "Evil square", "Behold my 4-sided army!", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 										setTimeout(() => {
-											createChatbox(screen, "chatSquare2", "Evil square", "Squares, take care of this one.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
+											createChatbox(screen, "chatSquare2", "Evil square", "Squares, take care of this.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 											setTimeout(() => {
 												screen.removeChild(enemy1);
 												var textenc4 = createDiv("textenc5");
@@ -422,6 +488,3 @@ function introScene() {
 }
 
 introScene();
-//chooseDotScene();
-//encounterScene();
-//fightScene(spawnEnemies());
