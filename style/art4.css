@@ -24,8 +24,8 @@
 }
 
 @keyframes dotencanim1 {
-	from {background-color: #000000; transform: scale(0.8);};
-	to {background-color: #ffffff; transform: scale(1);};
+	from {background-color: #000000; transform: scale(0.8);}
+	to {background-color: #ffffff; transform: scale(1);}
 }
 
 @keyframes dotencanim2 {
@@ -65,13 +65,13 @@
 }
 
 @keyframes textencanim1 {
-	from {color: #000000};
-	to {color: #ffffff};
+	from {color: #000000}
+	to {color: #ffffff}
 }
 
 @keyframes textencanim2 {
-	from {color: #ffffff};
-	to {color: #000000};
+	from {color: #ffffff}
+	to {color: #000000}
 }
 
 .textenc2 {

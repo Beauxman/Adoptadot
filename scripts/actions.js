@@ -209,7 +209,7 @@ function fightScene(enemies) {
 			if ((pos.x <= enPos.right && pos.x >= enPos.left)
 				&& (pos.y >= enPos.top && pos.y <= enPos.bottom)) {
 				enemyBullets[i].style = "z-index: -1;";
-				enemyBullets[i].style = "background-color: #000000;";
+				enemyBullets[i].style = "background-color: transparent;";
 				enemyBullets.shift();
 			}
 		}
@@ -298,18 +298,18 @@ function encounterScene() {
 
 var newProps1;
 function chooseDotScene() {
-	var optionsText = createDiv("optionsText");
 	var dot1 = createDiv("dot1");
 	var dot2 = createDiv("dot2");
 	var dot3 = createDiv("dot3");
 	var dot4 = createDiv("dot4");
-	
+
+	var optionsText = createDiv("optionsText");	
 	var option1 = createButton("option1", "Dot");
 	var option2 = createButton("option2", "Blob");
 	var option3 = createButton("option3", "Spot");
 	var option4 = createButton("option4", "Sprinkle");
 	
-	newProps1 = [optionsText, dot1, dot2, dot3, dot4, option1, option2, option3, option4];
+	newProps1 = [dot1, dot2, dot3, dot4, optionsText, option1, option2, option3, option4];
 	
 	option1.addEventListener('mouseover', () => {
 		dot1.style = "animation: dotanim2 0.4s 0.2s infinite alternate"
@@ -342,6 +342,11 @@ function chooseDotScene() {
 	screen.style = "animation: screenanim1 1s 7s;";
 	screen.style = "animation: screenanim1 1s 8s reverse;";
 	setTimeout(() => {
+		for (let i = 4; i < newProps1.length; i++) {
+			screen.removeChild(newProps1[i]);
+		}
+	}, 8000)
+	setTimeout(() => {
 		createChatbox(screen, "chatdot4", "Sprinkle", "What was that?", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
 		setTimeout(() => {
 			createChatbox(screen, "chatdot2", "Blob", "I'm not sure!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
@@ -363,7 +368,7 @@ function chooseDotScene() {
 										var lamp = document.getElementsByClassName("lamp")[0];
 										setTimeout(() => {
 											screen.removeChild(lamp);
-											for (let i = 0; i < newProps1.length; i++) {
+											for (let i = 0; i < 4; i++) {
 												screen.removeChild(newProps1[i]);
 											}
 											encounterScene();
