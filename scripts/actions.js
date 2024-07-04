@@ -94,7 +94,14 @@ function spawnEnemies() {
 function creditsScene() {
 	screen.style = "animation: screencredits1 1s 1s normal forwards;";
 	setTimeout(() => {
-		var chatbox = createDiv("textcredits1");
+		var textcredits1 = createDiv("textcredits1");
+			setTimeout(() => {
+				screen.removeChild(textcredits1);
+				var textcredits2= createDiv("textcredits2");
+				setTimeout(() => {
+					screen.removeChild(textcredits2);
+				}, 4000)
+			}, 4000)
 	}, 2000)
 }
 
@@ -425,23 +432,23 @@ function chooseDotScene() {
 					createChatbox(screen, "chatdot4", "Sprinkle", "There it is again!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
 					setTimeout(() => {
 						createChatbox(screen, "chatdot3", "Spot", "I saw it this time!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+						setTimeout(() => {
+							createChatbox(screen, "chatSquare1", "Unknown", "Muwhahaha!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
 							setTimeout(() => {
-								createChatbox(screen, "chatSquare1", "Unknown", "Muwhahaha!", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+								createChatbox(screen, "chatdot2", "Blob", "Uhmm... Who is that?", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
 								setTimeout(() => {
-									createChatbox(screen, "chatdot2", "Blob", "Uhmm... Who is that?", 3000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;");
+									screen.style = "animation: screenanim3 3s 1s;";
+									var lamp = document.getElementsByClassName("lamp")[0];
 									setTimeout(() => {
-										screen.style = "animation: screenanim3 3s 1s;";
-										var lamp = document.getElementsByClassName("lamp")[0];
-										setTimeout(() => {
-											screen.removeChild(lamp);
-											for (let i = 0; i < 4; i++) {
-												screen.removeChild(newProps1[i]);
-											}
-											encounterScene();
-										}, 3250)
-									}, 5000)
+										screen.removeChild(lamp);
+										for (let i = 0; i < 4; i++) {
+											screen.removeChild(newProps1[i]);
+										}
+										encounterScene();
+									}, 3250)
 								}, 5000)
 							}, 5000)
+						}, 5000)
 					}, 5000)
 				}, 9000)
 			}, 5000)

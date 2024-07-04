@@ -24,3 +24,18 @@
   60% {color: #000000;}
   100% {color: #ffffff;}
 }
+
+.textcredits2 {
+	color: #ffffff;
+	font-size: 3vw;
+	position: absolute;
+	z-index: 1;
+	width: 100vw;
+	text-align: center;
+	margin-top: 48vh;
+	animation:	textcreditsanim1 3s 0.5s normal forwards;
+}
+
+.textcredits2::before {
+	content: "By Andrew Bowman";
+}
