@@ -193,13 +193,7 @@ function fightScene(enemies) {
 							createChatbox(screen, "chatSquare2", "Evil square", "This is not possible...", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 						} else if (enemies.length == 0) {
 							createChatbox(screen, "chatSquare2", "Evil square", "I can't believe it!", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
-							enemyBullets = []
 							setTimeout(() => {
-								var remainingBullets = document.getElementsByClassName("enemyBullet");
-								for (let i = 0; i < remainingBullets.length; i++) { 
-									screen.removeChild(remainingBullets[i]);
-								}
-
 								setTimeout(() => {		
 									createChatbox(screen, "chatSquare2", "Evil square", "I'll just do it myself then...", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 									setTimeout(() => {
@@ -224,7 +218,7 @@ function fightScene(enemies) {
 								createChatbox(screen, "chatSquare2", "Evil square", "Ow! That hurt.", 4000, 100, "chatdotanim2 0.5s infinite alternate, chatdotanim1 0.5s infinite alternate;")
 							}
 						} else if (bosshealth <= 0 && bosshealth >= -99) {
-							bosshealth = -100
+							bosshealth = -120
 							if (document.getElementsByClassName("healthbarboss").length > 0) {
 								screen.removeChild(healthbarboss);
 							}
@@ -233,10 +227,7 @@ function fightScene(enemies) {
 								screen.style = "animation: screenbossanim3 1s;";
 								setTimeout(() => {
 									screen.removeChild(enemies[0]);
-									var remainingBullets = document.getElementsByClassName("enemyBullet");
-									for (let i = 0; i < remainingBullets.length; i++) { 
-										screen.removeChild(remainingBullets[i]);
-									}				
+									enemies = []
 									setTimeout(() => {
 										clearInterval(gameLoop);
 										screen.removeEventListener("mousemove", movFunc);
@@ -277,13 +268,13 @@ function fightScene(enemies) {
 			enemyBullets[i].style.marginTop = (pos.top + bulletSpeed) + "px";
 			if (pos.bottom >= (screen.offsetHeight - (screen.offsetHeight / 40))) {
 				screen.removeChild(enemyBullets[i]);
+				enemyBullets.splice(i, 1);
 			}
 			
 			if ((pos.x <= enPos.right && pos.x >= enPos.left)
 				&& (pos.y >= enPos.top && pos.y <= enPos.bottom)) {
 				enemyBullets[i].style = "z-index: -1;";
 				enemyBullets[i].style = "background-color: transparent;";
-				enemyBullets.shift();
 			}
 		}
 	}

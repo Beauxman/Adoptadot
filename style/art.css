@@ -1,6 +1,9 @@
 .screen {
 	display: flex;
 	height: 100vh;
+    max-height: 100vh;
+	max-width: 100vw;
+    overflow: auto;
 }
 
 .dot {
